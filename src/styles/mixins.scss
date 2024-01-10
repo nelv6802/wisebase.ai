@@ -1,0 +1,74 @@
+@use 'sass:map';
+
+$screen-sizes: (
+  xs: 384px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+@mixin mq($size) {
+  @media screen and (min-width: map.get($screen-sizes, $size)) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 98%;
+  margin: 0 auto;
+
+  @include mq(sm) {
+    max-width: 540px;
+  }
+
+  @include mq(md) {
+    max-width: 720px;
+  }
+
+  @include mq(lg) {
+    max-width: 960px;
+  }
+}
+
+@mixin container-level2 {
+  @include container;
+
+  @include mq(xl) {
+    max-width: 1140px;
+  }
+}
+
+@mixin container-level3 {
+  @include container-level2;
+
+  @include mq(xxl) {
+    max-width: 1392px;
+  }
+}
+
+
+@mixin padding-container {
+  padding: 3rem 1rem;
+
+  @include mq(sm) {
+    padding: 3rem 1rem;
+  }
+
+  @include mq(md) {
+    padding: 3rem 1.5rem;
+  }
+
+  @include mq(lg) {
+    padding: 3rem 3rem;
+  }
+
+  @include mq(xl) {
+    padding: 3rem 5rem;
+  }
+
+  @include mq(xxl) {
+    padding: 3rem 7rem;
+  }
+}
